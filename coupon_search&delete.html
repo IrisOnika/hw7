@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://open-eshop.stqa.ru/" />
+<title>coupon_search&delete</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">coupon_search&delete</td></tr>
+</thead><tbody>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class = 'panel-group']//span[text()='eShop']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@class = 'panel-group']//span[text()='eShop']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@class = 'panel-group']//span[text()='Coupons']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=.form-inline input[name='name']</td>
+	<td></td>
+</tr>
+<!--не поулчилось избавиться =( без паузы работает нестабильно-->
+<!--варианты ожиданий пробовала самые разные-->
+<tr>
+	<td>pause</td>
+	<td>200</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>css=.form-inline input[name='name']</td>
+	<td>${couponName}</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>css=.form-inline input[name='name']</td>
+	<td>${couponName}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=form.form-inline button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@class='table-responsive']//tr[1]/td[1]</td>
+	<td>${couponName}</td>
+</tr>
+<tr>
+	<td>waitForXpathCount</td>
+	<td>//div[@class='table-responsive']//tbody/tr</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>//div[@class='table-responsive']//tr[td[text()='${couponName}']]/@id</td>
+	<td>trId</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a[data-id='${trId}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.sweet-alert.visible</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.sweet-alert.visible button.confirm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>css=div.sweet-alert.visible</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForAttribute</td>
+	<td>//div[@class='table-responsive']//tr[@id='${trId}']/@style</td>
+	<td>display: none;</td>
+</tr>
+</tbody></table>
+</body>
+</html>
